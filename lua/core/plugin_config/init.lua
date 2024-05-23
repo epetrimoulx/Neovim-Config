@@ -8,4 +8,4 @@ require("core.plugin_config.lsp_config")
 require("core.plugin_config.comments")
 require("core.plugin_config.fugitive")
 require("core.plugin_config.undotree")
-
+require("core.plugin_config.toggleterm")

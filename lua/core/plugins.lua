@@ -14,8 +14,8 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
   -- My plugins here
   use 'wbthomason/packer.nvim'
+  use "lukas-reineke/indent-blankline.nvim"
   use 'nvim-tree/nvim-tree.lua'
-  use 'DaikyXendo/nvim-material-icon'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
   use 'hrsh7th/nvim-cmp'
@@ -30,11 +30,20 @@ return require('packer').startup(function(use)
   use 'numToStr/Comment.nvim'
   use 'folke/todo-comments.nvim'
   use 'nvim-tree/nvim-web-devicons'
+  use 'stevearc/dressing.nvim'
   use {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
+  use {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+        require("nvim-autopairs").setup {}
+    end
+  }
+  use "akinsho/toggleterm.nvim"
 
 -- Color Schemes --
 -- use {"bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000}
@@ -43,7 +52,7 @@ return require('packer').startup(function(use)
 -- use 'rebelot/kanagawa.nvim'
 -- use 'joshdick/onedark.vim'
 -- use {"AstroNvim/astrotheme", priority = 1000}
-use "projekt0n/github-nvim-theme" 
+use "projekt0n/github-nvim-theme"
 
 -- Telescope --
   use {
@@ -72,3 +81,5 @@ use "projekt0n/github-nvim-theme"
     require('packer').sync()
   end
 end)
+
+
