@@ -1,3 +1,12 @@
+vim.deprecate = function() end
+
+vim.filetype.add({
+  extension = {
+    razor = 'razor',
+    cshtml = 'razor',
+  },
+})
+
 require("core.keymaps")
 require("core.plugins")
 require("core.plugin_config")
@@ -11,3 +20,19 @@ vim.cmd('highlight Normal guibg=rgba:0000/0000/0000/80')
 
 -- Correct the syntac highlighting for CMakelists.txt --
 vim.cmd('au BufNewFile,BufRead CMakeLists.txt set filetype=cmake')
+
+-- Map aspnetcorerazor to razor
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "aspnetcorerazor",
+  callback = function()
+    vim.bo.filetype = "razor"
+  end,
+})
+
+-- Auto format C# files on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {"*.cs", "*.razor", "*.cshtml"},
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
